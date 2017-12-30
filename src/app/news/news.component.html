@@ -1,0 +1,42 @@
+<h2>Daily News</h2>
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-5">
+			<p class="well lead">Top Headlines from Selected Publishers </p>
+		</div>
+		<div class="col-lg-3">
+		    <div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Publishers
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" *ngFor="let publisher of this.publishers" (click)="callHeadlinesService(publisher)">{{publisher}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3">
+			<p class="well lead">Or Search by Keywords </p>
+		</div>
+		<div class="col-lg-3 form-inline" >
+			<input class="form-control mr-sm-2" type="text" [(ngModel)]="id_keyword" (change)="callNewsSrchService()" placeholder="Search" aria-label="Search">
+		</div>
+	</div>
+</div>
+<br>
+
+
+<div class="card mb-3" *ngFor="let h of this.headlines">
+	<div class="card-body">
+		<h5 class="mb-1">{{h.title}}</h5>
+		{{h.description}} <br>
+		<span>source: {{h.source.name}}</span>
+		<span><a href={{h.url}}>Read more</a></span>
+	</div>
+</div>
+
+<p class="text-info">Total # of all the service requests including Weather, Movie, and Currency is :
+    <span class="badge">{{this._sharedService.totReqsMade}}</span>
+  </p>
